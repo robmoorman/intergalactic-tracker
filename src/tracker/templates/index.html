@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Generate new wallet</h5>
+          <p class="card-text">Click on the button below to generate a new wallet</p>
+          <button id="generate" class="btn btn-primary">Generate wallet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="public_key">Public key:</label>
+            <textarea class="form-control" id="public_key" rows="3" readonly></textarea>
+          </div>
+          <div class="form-group">
+            <label for="private_key">Private key:</label>
+            <textarea class="form-control" id="private_key" rows="3" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  (function() {
+    var btn = $('#generate')
+
+    btn.on('click', function() {
+      btn.prop('disabled', true)
+
+      $.ajax({
+        url: '/api/wallet/',
+        success: function(res) {
+          $('#public_key').val(res.public_key)
+          $('#private_key').val(res.private_key)
+
+          btn.prop('disabled', false)
+        },
+        error: function() {
+          btn.prop('disabled', false)
+        }
+      })
+    })
+  })()
+</script>
+{% endblock%}

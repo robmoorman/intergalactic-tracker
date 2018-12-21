@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        {% block styles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+        <style>.content{padding-top:4rem;}.card{margin-bottom:1rem;}</style>
+        {% endblock %}
+        {% block extra_styles %}{% endblock %}
+        <title>{% block title %}Intergalactic{% endblock %}</title>
+    </head>
+    <body>
+      {% include "includes/header.html" %}
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+      {% include "includes/footer.html" %}
+      {% block scripts %}
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+      {% endblock scripts %}
+      {% block extra_scripts %}{% endblock %}
+    </body>
+</html>
